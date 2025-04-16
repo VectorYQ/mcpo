@@ -3,7 +3,11 @@ import asyncio
 import typer
 import os
 from dotenv import load_dotenv
+import platform
 
+if platform.system() == "Windows":
+    asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
+    
 from typing_extensions import Annotated
 from typing import Optional, List
 
@@ -123,9 +127,11 @@ def main(
             description=description,
             version=version,
             server_command=server_command,
-            ssl_certfile=ssl_certfile,
-            ssl_keyfile=ssl_keyfile,
+            # ssl_certfile=ssl_certfile,
+            # ssl_keyfile=ssl_keyfile,
             path_prefix=path_prefix,
+            ssl_certfile="C:/Users/40900003/.office-addin-dev-certs/wintime.crt",
+            ssl_keyfile="C:/Users/40900003/.office-addin-dev-certs/wintime.pem" ,
         )
     )
 
